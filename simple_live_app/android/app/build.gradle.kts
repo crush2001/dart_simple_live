@@ -71,3 +71,10 @@ android {
 flutter {
     source = "../.."
 }
+// 给所有 Android library 插件补上 kotlin 插件，
+// 修复像 auto_orientation_v2 这种“用了 kotlin{} 却没 apply 插件”的老包
+subprojects {
+    pluginManager.withPlugin("com.android.library") {
+        pluginManager.apply("org.jetbrains.kotlin.android")
+    }
+}
